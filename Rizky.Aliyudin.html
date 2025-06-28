@@ -1,0 +1,173 @@
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rizky Aliyudin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to bottom right, #12c415, hsl(115, 65%, 49%), hsl(108, 84%, 51%));
+        color: white;
+      }
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        padding: 20px;
+        background-color: #5ee31b66;
+        position: sticky;
+        top: 0;
+      }
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      nav a:hover {
+        text-decoration: underline;
+      }
+      header {
+        padding: 100px 20px 40px;
+        text-align: center;
+      }
+      h1 {
+        font-size: 3em;
+        margin-bottom: 0.3em;
+      }
+      p {
+        font-size: 1.2em;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      section {
+        padding: 60px 20px;
+        text-align: center;
+      }
+      .button {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 12px 30px;
+        background: #00c6ff;
+        color: white;
+        border-radius: 30px;
+        text-decoration: none;
+        transition: background 0.3s ease;
+      }
+      .button:hover {
+        background: #2bff00;
+      }
+      canvas {
+        background: rgb(29, 161, 73);
+        display: block;
+        margin: 20px auto;
+        border: 2px solid #00c6ff;
+      }
+      footer {
+        margin-top: 80px;
+        padding: 20px;
+        font-size: 0.9em;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="#tentang">Tentang</a>
+      <a href="#portofolio">Portofolio</a>
+      <a href="#game">Game</a>
+      <a href="#kontak">Hubungi Saya</a>
+    </nav>
+  
+    <header>
+      <h1>Rizky Aliyudin</h1>
+      <p>Selamat datang di situs pribadi saya. Saya adalah mahasiswa yang sangat tertarik dalam pengembangan teknologi, desain web, dan pemrograman.</p>
+    </header>
+  
+    <section id="tentang">
+      <h2>Tentang Saya</h2>
+      <p>Saya adalah mahasiswa yang memiliki semangat belajar tinggi dan suka menjelajahi berbagai teknologi baru. Fokus utama saya adalah di bidang web development</p>
+    </section>
+  
+    <section id="portofolio">
+      <h2>Portofolio</h2>
+      <p>Berikut beberapa proyek yang pernah saya kerjakan:</p>
+      <ul>
+        <li>Website Profil Pribadi</li>
+        <li>Aplikasi To-Do List dengan JavaScript</li>
+        <li>Desain UI Aplikasi Mobile</li>
+      </ul>
+    </section>
+  
+    <section id="game">
+      <h2>Game Sederhana</h2>
+  
+      <h3>Game 1: Klik Kotak</h3>
+      <canvas id="gameCanvas1" width="300" height="300"></canvas>
+      <script>
+        const canvas1 = document.getElementById('gameCanvas1');
+        const ctx1 = canvas1.getContext('2d');
+        let score1 = 0;
+        let box1 = { x: 100, y: 100, size: 50 };
+  
+        function drawBox1() {
+          ctx1.clearRect(0, 0, canvas1.width, canvas1.height);
+          ctx1.fillStyle = '#00c6ff';
+          ctx1.fillRect(box1.x, box1.y, box1.size, box1.size);
+        }
+  
+        function randomizeBox1() {
+          box1.x = Math.random() * (canvas1.width - box1.size);
+          box1.y = Math.random() * (canvas1.height - box1.size);
+        }
+  
+        canvas1.addEventListener('click', function(e) {
+          const rect = canvas1.getBoundingClientRect();
+          const mouseX = e.clientX - rect.left;
+          const mouseY = e.clientY - rect.top;
+  
+          if (mouseX >= box1.x && mouseX <= box1.x + box1.size && mouseY >= box1.y && mouseY <= box1.y + box1.size) {
+            score1++;
+            alert('Skor: ' + score1);
+            randomizeBox1();
+            drawBox1();
+          }
+        });
+        drawBox1();
+      </script>
+  
+      <h3>Game 2: Tebak Angka</h3>
+      <p>Saya telah memilih angka antara 1 dan 10. Coba tebak!</p>
+      <input type="number" id="guessInput" min="1" max="10">
+      <button onclick="checkGuess()">Tebak</button>
+      <p id="guessResult"></p>
+      <script>
+        const secretNumber = Math.floor(Math.random() * 10) + 1;
+        function checkGuess() {
+          const guess = parseInt(document.getElementById('guessInput').value);
+          const result = document.getElementById('guessResult');
+          if (guess === secretNumber) {
+            result.textContent = 'Tebakan kamu benar!';
+          } else {
+            result.textContent = 'Coba lagi!';
+          }
+        }
+      </script>
+    </section>
+  
+    <section id="kontak">
+      <h2>Hubungi Saya</h2>
+      <p>Email: rizkyali101202@gmail.com</p>
+      <p>Instagram: @rizky_ali10</p>
+      <p>Whatsapp: 089684871469</p>
+      <a href="mailto:rizkyali101202@gmail.com" class="button">Kirim Email</a>
+    </section>
+  
+    <footer>
+      &copy; 2025 Rizky Aliyudin. Dibuat dengan 🫶🏻🫶🏻.
+    </footer>
+  </body>
+  </html>
